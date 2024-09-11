@@ -1,12 +1,10 @@
 # Referrence: https://synuns.tistory.com/75
 name: CICD
 
-
 on:
   push:
     branches:
       - main
-
 
 jobs:
   build:
@@ -14,7 +12,6 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-
 
       - name: Create .env file
         run: |
@@ -27,15 +24,6 @@ jobs:
       - name: Push Docker Image
         run: docker push lock1205/task-frontend:latest
 
-
   deploy:
     needs: build
     runs-on: aws-ec2
- —------ 이 부분까지 입력하고, 19 ~ 28번 절차 진행
-    steps:
-      - name: Pull image from docker hub
-        run: docker pull lock1205/task-frontend:latest
-      - name: Delete existing container
-        run: docker rm -f reactContainer
-      - name: Run container
-        run: docker run -d -p 80:80 --name reactContainer lock1205/task-frontend
