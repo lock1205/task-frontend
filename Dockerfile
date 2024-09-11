@@ -2,7 +2,7 @@
 FROM node:alpine3.18 as build
 
 #작업 디렉토리 설정
-WORKDIR /APP
+WORKDIR /app
 
 #패키지 파일 현재 디렉토리에 복사
 COPY package.json .
